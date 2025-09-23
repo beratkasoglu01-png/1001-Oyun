@@ -1,0 +1,89 @@
+ZIP dosyası oluşturmak için öncelikle bilgisayarında bir klasör yapısı oluştur. İçeriği şöyle olacak:
+
+101OyunSite/
+├─ index.html
+├─ games/
+│   ├─ oyun1.html
+│   └─ oyun2.html
+
+---
+
+### index.html
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>101 Oyun</title>
+<style>
+body{font-family:Arial;background:#f0f0f0;margin:0;padding:20px;}
+.grid{display:flex;gap:20px;flex-wrap:wrap;}
+.card{background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.2);width:200px;text-align:center;}
+button{padding:10px 15px;border:none;background:#4CAF50;color:#fff;border-radius:5px;cursor:pointer;}
+iframe{width:100%;height:400px;margin-top:20px;border:1px solid #ccc;}
+</style>
+</head>
+<body>
+<h1>101 Oyun Sitesi</h1>
+<div class="grid" id="grid"></div>
+<iframe id="gameIframe" src="about:blank"></iframe>
+
+<script>
+const games = [
+  {title:"Oyun 1", slug:"oyun1", desc:"Oyun 1 Açıklama", iframeSrc:"games/oyun1.html"},
+  {title:"Oyun 2", slug:"oyun2", desc:"Oyun 2 Açıklama", iframeSrc:"games/oyun2.html"}
+];
+
+const grid = document.getElementById('grid');
+const iframe = document.getElementById('gameIframe');
+
+games.forEach(g=>{
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `<h3>${g.title}</h3><p>${g.desc}</p><button>Oyna</button>`;
+  card.querySelector('button').addEventListener('click',()=>{
+    iframe.src = g.iframeSrc;
+  });
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>
+```
+
+---
+
+### games/oyun1.html
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Oyun 1</title>
+<style>body{display:flex;justify-content:center;align-items:center;height:100vh;} h1{color:#4CAF50;}</style>
+</head>
+<body>
+<h1>Oyun 1 Çalışıyor!</h1>
+</body>
+</html>
+```
+
+### games/oyun2.html
+```html
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Oyun 2</title>
+<style>body{display:flex;justify-content:center;align-items:center;height:100vh;} h1{color:#FF5733;}</style>
+</head>
+<body>
+<h1>Oyun 2 Çalışıyor!</h1>
+</body>
+</html>
+```
+
+---
+
+Bu klasörleri ve dosyaları oluşturduktan sonra **101OyunSite** klasörünü sağ tıklayıp “ZIP olarak sıkıştır” diyebilirsin. ZIP’i GitHub’a yüklediğinde site ve oyunlar direkt çalışacak.
